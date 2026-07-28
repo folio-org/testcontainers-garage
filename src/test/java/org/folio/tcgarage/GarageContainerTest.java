@@ -8,7 +8,6 @@ import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.restassured.RestAssured;
 import lombok.SneakyThrows;
-import org.folio.tcgarage.GarageContainer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;

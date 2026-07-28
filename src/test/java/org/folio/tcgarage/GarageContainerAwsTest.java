@@ -4,8 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import io.restassured.RestAssured;
-import org.folio.tcgarage.GarageContainer;
-import org.folio.tcgarage.GarageContainerAws;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;
