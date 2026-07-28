@@ -55,6 +55,8 @@ abstract class AbstractGarageContainerAws<T extends AbstractGarageContainerAws<T
 
   /**
    * AWS SDK v2 S3 client builder pre-configured for this {@code GarageContainer}.
+   *
+   * @return {@link S3ClientBuilder}
    */
   public S3ClientBuilder getS3ClientBuilder() {
     return S3Client
@@ -69,6 +71,8 @@ abstract class AbstractGarageContainerAws<T extends AbstractGarageContainerAws<T
 
   /**
    * AWS SDK v2 S3 client pre-configured for this {@code GarageContainer}.
+   *
+   * @return {@link S3Client}
    */
   public S3Client getS3Client() {
     return getS3ClientBuilder().build();

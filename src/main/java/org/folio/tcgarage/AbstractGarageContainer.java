@@ -106,6 +106,7 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    * This no-op method exists to ease the migration from testcontainers-localstack {@code LocalStackContainer}.
    *
    * @param services must be "s3"
+   * @return this
    */
   public AbstractGarageContainer<T> withServices(String... services) {
     for (var service : services) {
@@ -118,6 +119,9 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
 
   /**
    * Set the username/access key for the S3 API.
+   *
+   * @param userName S3 API user name
+   * @return this
    */
   public AbstractGarageContainer<T> withUserName(String userName) {
     return withEnv(GARAGE_DEFAULT_ACCESS_KEY, userName);
@@ -125,6 +129,9 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
 
   /**
    * set the password/secret key for the S3 API.
+   *
+   * @param password S3 API password
+   * @return this
    */
   public AbstractGarageContainer<T> withPassword(String password) {
     return withEnv(GARAGE_DEFAULT_SECRET_KEY, password);
@@ -205,6 +212,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    * Secret for RPC.
    *
    * <p>The RPC port 3601 is not exposed by default.
+   *
+   * @return secret for RPC
    */
   public String getRpcSecret() {
     return rpcSecret;
@@ -212,6 +221,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
 
   /**
    * Authorization bearer token for admin URL.
+   *
+   * @return admin token
    */
   public String getAdminToken() {
     return adminToken;
@@ -220,6 +231,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
   /**
    * Metrics token to be used as Authorization bearer token for metrics API at
    * {@link getAdminUrl()} + "/metrics".
+   *
+   * @return metrics token
    */
   public String getMetricsToken() {
     return metricsToken;
@@ -227,6 +240,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
 
   /**
    * Garage admin URL, mapped from port 3903.
+   *
+   * @return admin url
    */
   public String getAdminUrl() {
     return "http://" + getHost() + ":" + getMappedPort(GARAGE_ADMIN_PORT);
@@ -243,12 +258,19 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *    .build();
    * </code></pre>
    *
-   * @see #getS3Client()
-   * @see #getS3ClientBuilder()
-   * @see #getMinioClient()
-   * @see #getMinioClientBuilder()
-   * @see #getMinioAsyncClient()
-   * @see #getMinioAsyncClientBuilder()
+   * @return S3 URL
+   * @see GarageContainerAws#getS3Client()
+   * @see GarageContainerAws#getS3ClientBuilder()
+   * @see GarageContainerMinio#getMinioClient()
+   * @see GarageContainerMinio#getMinioClientBuilder()
+   * @see GarageContainerMinio#getMinioAsyncClient()
+   * @see GarageContainerMinio#getMinioAsyncClientBuilder()
+   * @see AbstractGarageContainerAws#getS3Client()
+   * @see AbstractGarageContainerAws#getS3ClientBuilder()
+   * @see AbstractGarageContainerMinio#getMinioClient()
+   * @see AbstractGarageContainerMinio#getMinioClientBuilder()
+   * @see AbstractGarageContainerMinio#getMinioAsyncClient()
+   * @see AbstractGarageContainerMinio#getMinioAsyncClientBuilder()
    */
   public String getS3URL() {
     try {
@@ -272,12 +294,19 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *    .build();
    * </code></pre>
    *
-   * @see #getS3Client()
-   * @see #getS3ClientBuilder()
-   * @see #getMinioClient()
-   * @see #getMinioClientBuilder()
-   * @see #getMinioAsyncClient()
-   * @see #getMinioAsyncClientBuilder()
+   * @return user name for S3 API
+   * @see GarageContainerAws#getS3Client()
+   * @see GarageContainerAws#getS3ClientBuilder()
+   * @see GarageContainerMinio#getMinioClient()
+   * @see GarageContainerMinio#getMinioClientBuilder()
+   * @see GarageContainerMinio#getMinioAsyncClient()
+   * @see GarageContainerMinio#getMinioAsyncClientBuilder()
+   * @see AbstractGarageContainerAws#getS3Client()
+   * @see AbstractGarageContainerAws#getS3ClientBuilder()
+   * @see AbstractGarageContainerMinio#getMinioClient()
+   * @see AbstractGarageContainerMinio#getMinioClientBuilder()
+   * @see AbstractGarageContainerMinio#getMinioAsyncClient()
+   * @see AbstractGarageContainerMinio#getMinioAsyncClientBuilder()
    */
   public String getUserName() {
     return getAccessKey();
@@ -296,12 +325,19 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *    .build();
    * </code></pre>
    *
-   * @see #getS3Client()
-   * @see #getS3ClientBuilder()
-   * @see #getMinioClient()
-   * @see #getMinioClientBuilder()
-   * @see #getMinioAsyncClient()
-   * @see #getMinioAsyncClientBuilder()
+   * @return password for S3 API
+   * @see GarageContainerAws#getS3Client()
+   * @see GarageContainerAws#getS3ClientBuilder()
+   * @see GarageContainerMinio#getMinioClient()
+   * @see GarageContainerMinio#getMinioClientBuilder()
+   * @see GarageContainerMinio#getMinioAsyncClient()
+   * @see GarageContainerMinio#getMinioAsyncClientBuilder()
+   * @see AbstractGarageContainerAws#getS3Client()
+   * @see AbstractGarageContainerAws#getS3ClientBuilder()
+   * @see AbstractGarageContainerMinio#getMinioClient()
+   * @see AbstractGarageContainerMinio#getMinioClientBuilder()
+   * @see AbstractGarageContainerMinio#getMinioAsyncClient()
+   * @see AbstractGarageContainerMinio#getMinioAsyncClientBuilder()
    */
   public String getPassword() {
     return getSecretKey();
@@ -325,6 +361,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *              .serviceConfiguration(S3Configuration.builder().chunkedEncodingEnabled(false).build())
    *              .build();
    * </code></pre>
+   *
+   * @return access key
    */
   public String getAccessKey() {
     return getEnvMap().get(GARAGE_DEFAULT_ACCESS_KEY);
@@ -347,6 +385,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *              .serviceConfiguration(S3Configuration.builder().chunkedEncodingEnabled(false).build())
    *              .build();
    * </code></pre>
+   *
+   * @return secret key
    */
   public String getSecretKey() {
     return getEnvMap().get(GARAGE_DEFAULT_SECRET_KEY);
@@ -355,7 +395,7 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
   /**
    * The HTTP S3 endpoint of garage to be used in test code.
    *
-   * <p>Pass it into the AWS S3 client using the {@link S3ClientBuilder#endpointOverride(URI)} method:
+   * <p>Pass it into the AWS S3 client using the {@code S3ClientBuilder endpointOverride(URI)} method:
    * <pre><code>S3Client s3 = S3Client.builder()
    *              .endpointOverride(garage.getEndpoint())
    *              .credentialsProvider(StaticCredentialsProvider.create(
@@ -365,6 +405,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *              .serviceConfiguration(S3Configuration.builder().chunkedEncodingEnabled(false).build())
    *              .build();
    * </code></pre>
+   *
+   * @return S3 endpoint URI
    */
   public URI getEndpoint() {
     try {
@@ -377,8 +419,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
   /**
    * The default region of garage.
    *
-   * <p>Pass it into the AWS s3 client using the {@link S3ClientBuilder#region(Region)} method or the
-   * {@link MinioClient.Builder#region(String)} method or the {@link MinioAsyncClient.Builder#region(String)} method:
+   * <p>Pass it into the AWS s3 client using the {@code S3ClientBuilder region(Region)} method or the
+   * {@code MinioClient.Builder region(String)} method or the {@code MinioAsyncClient.Builder region(String)} method:
    * <pre><code>S3Client s3 = S3Client.builder()
    *    .endpointOverride(garage.getEndpoint())
    *    .credentialsProvider(StaticCredentialsProvider.create(
@@ -400,6 +442,8 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
    *    .region(garage.getRegion())
    *    .build();
    * </code></pre>
+   *
+   * @return default region
    */
   public String getRegion() {
     return getEnvMap().get(DEFAULT_REGION);

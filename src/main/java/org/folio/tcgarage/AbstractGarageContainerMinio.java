@@ -52,6 +52,8 @@ abstract class AbstractGarageContainerMinio<T extends AbstractGarageContainerMin
 
   /**
    * MinioClient.Builder with configured S3URL, credentials and region.
+   *
+   * @return {@link MinioClient.Builder}
    */
   public MinioClient.Builder getMinioClientBuilder() {
     return MinioClient.builder()
@@ -62,6 +64,8 @@ abstract class AbstractGarageContainerMinio<T extends AbstractGarageContainerMin
 
   /**
    * MinioClient with configured S3URL, credentials and region.
+   *
+   * @return {@link MinioClient}
    */
   public MinioClient getMinioClient() {
     return getMinioClientBuilder().build();
@@ -69,6 +73,8 @@ abstract class AbstractGarageContainerMinio<T extends AbstractGarageContainerMin
 
   /**
    * MinioAsyncClient.Builder with configured S3URL, credentials and region.
+   *
+   * @return {@link MinioAsyncClient.Builder}
    */
   public MinioAsyncClient.Builder getMinioAsyncClientBuilder() {
     return MinioAsyncClient.builder()
@@ -79,6 +85,8 @@ abstract class AbstractGarageContainerMinio<T extends AbstractGarageContainerMin
 
   /**
    * MinioAsyncClient with configured S3URL, credentials and region.
+   *
+   * @return {@link MinioAsyncClient}
    */
   public MinioAsyncClient getMinioAsyncClient() {
     return getMinioAsyncClientBuilder().build();
