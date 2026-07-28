@@ -2,6 +2,8 @@ package org.folio.tcgarage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import io.minio.GetObjectArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.PutObjectArgs;
@@ -9,6 +11,7 @@ import io.restassured.RestAssured;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.ContainerFetchException;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -43,5 +46,12 @@ class GarageContainerMinioTest {
     minio.putObject(PutObjectArgs.builder().bucket("async").object("k").data(foo, foo.length).build()).get();
     var s = minio.getObject(GetObjectArgs.builder().bucket("async").object("k").build()).get().readAllBytes();
     assertThat(s, is(foo));
+  }
+
+  @Test
+  void invalidVersion() {
+    try (var gSpace = new GarageContainerMinio("dxflrs/garage: ")) {
+      assertThrows(ContainerFetchException.class, gSpace::start);
+    }
   }
 }

@@ -2,10 +2,12 @@ package org.folio.tcgarage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.ContainerFetchException;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -31,5 +33,12 @@ class GarageContainerAwsTest {
     s3.putObject(PutObjectRequest.builder().bucket("buck").key("k").build(), RequestBody.fromString("foo"));
     var s = s3.getObjectAsBytes(GetObjectRequest.builder().bucket("buck").key("k").build()).asUtf8String();
     assertThat(s, is("foo"));
+  }
+
+  @Test
+  void invalidVersion() {
+    try (var gSpace = new GarageContainerAws("dxflrs/garage: ")) {
+      assertThrows(ContainerFetchException.class, gSpace::start);
+    }
   }
 }
