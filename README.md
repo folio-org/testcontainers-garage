@@ -30,7 +30,7 @@ the methods `withUserName(String)`, `withPassword(String)`, `getUserName()`,
 `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` are used if provided 
 via `withEnv(String, String)` or similar method).
 
-# AWS S3 client
+## AWS S3 client
 
 For AWS S3 client use `GarageContainerAws` that has methods
 that return a client or a client builder that is pre-configured for the garage container.
