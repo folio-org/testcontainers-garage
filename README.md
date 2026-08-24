@@ -35,7 +35,7 @@ via `withEnv(String, String)` or similar method).
 For AWS S3 client use `GarageContainerAws` that has methods
 that return a client or a client builder that is pre-configured for the garage container.
 
-# MinIO client
+## MinIO client
 
 For MinIO client and MinIO async client use `GarageContainerMinio` that has methods
 that return a client or a client builder that is pre-configured for the garage container.
