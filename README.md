@@ -28,7 +28,7 @@ To ease the migration from testcontainers-minio's `MinIOContainer`
 the methods `withUserName(String)`, `withPassword(String)`, `getUserName()`,
 `getPassword()`, and `getS3URL()` are provided, and the environment variables
 `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` are used if provided 
-via `withEnv(String, String)` or similar method).
+(via `withEnv(String, String)` or similar method).
 
 ## AWS S3 client
 
