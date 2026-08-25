@@ -211,7 +211,7 @@ abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> ext
   /**
    * Secret for RPC.
    *
-   * <p>The RPC port 3601 is not exposed by default.
+   * <p>The RPC port 3901 is not exposed by default.
    *
    * @return secret for RPC
    */
