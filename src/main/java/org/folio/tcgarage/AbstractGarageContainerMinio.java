@@ -2,6 +2,7 @@ package org.folio.tcgarage;
 
 import io.minio.MinioAsyncClient;
 import io.minio.MinioClient;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
 /**
@@ -27,9 +28,12 @@ import org.testcontainers.utility.DockerImageName;
  * or {@link #getMinioClientBuilder()} or {@link #getMinioAsyncClientBuilder()}
  * to get a MinIO client or a MinIO client builder that is pre-configured for the garage container.
  *
+ * @param <T> self-referencing generic, same as {@code SELF} in {@link GenericContainer}.
  * @see GarageContainerMinio
  */
-abstract class AbstractGarageContainerMinio<T extends AbstractGarageContainerMinio<T>> extends AbstractGarageContainer<T> {
+public abstract class AbstractGarageContainerMinio<T extends AbstractGarageContainerMinio<T>>
+    extends AbstractGarageContainer<T> {
+
   /**
    * Construct a Garage container from the dockerImageName.
    *

@@ -38,6 +38,8 @@ import org.testcontainers.utility.DockerImageName;
  * <p>For MinIO client and MinIO async client use {@link AbstractGarageContainerMinio} that has methods
  * that return a client or a client builder that is pre-configured for the garage container.
  *
+ * @param <T> self-referencing generic, same as {@code SELF} in {@link GenericContainer}.
+ * @see GarageContainer
  * @see AbstractGarageContainerAws#getS3Client()
  * @see AbstractGarageContainerAws#getS3ClientBuilder()
  * @see AbstractGarageContainerMinio#getMinioClient()
@@ -46,7 +48,8 @@ import org.testcontainers.utility.DockerImageName;
  * @see AbstractGarageContainerMinio#getMinioAsyncClientBuilder()
  */
 @SuppressWarnings("java:S2160")  // no "equals" override, we use GenericContainer's identity "equals"
-abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>> extends GenericContainer<T> {
+public abstract class AbstractGarageContainer<T extends AbstractGarageContainer<T>>
+    extends GenericContainer<T> {
 
   private static final DockerImageName DEFAULT_IMAGE_NAME = DockerImageName.parse("dxflrs/garage");
 

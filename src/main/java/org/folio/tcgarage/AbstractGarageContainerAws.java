@@ -1,5 +1,6 @@
 package org.folio.tcgarage;
 
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
@@ -30,9 +31,12 @@ import software.amazon.awssdk.services.s3.S3Configuration;
  * <p>Use {@link #getS3Client()} or {@link #getS3ClientBuilder()} to get
  * an AWS S3 client or an AWS S3 client builder that is pre-configured for the garage container.
  *
+ * @param <T> self-referencing generic, same as {@code SELF} in {@link GenericContainer}.
  * @see GarageContainerAws
  */
-abstract class AbstractGarageContainerAws<T extends AbstractGarageContainerAws<T>> extends AbstractGarageContainer<T> {
+public abstract class AbstractGarageContainerAws<T extends AbstractGarageContainerAws<T>>
+    extends AbstractGarageContainer<T> {
+
   /**
    * Construct a Garage container from the dockerImageName.
    *
