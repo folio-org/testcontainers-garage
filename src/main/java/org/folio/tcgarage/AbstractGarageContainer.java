@@ -134,7 +134,7 @@ public abstract class AbstractGarageContainer<T extends AbstractGarageContainer<
    * set the password/secret key for the S3 API.
    *
    * @param password S3 API password
-   * @return this
+   * @return self();
    */
   public AbstractGarageContainer<T> withPassword(String password) {
     return withEnv(GARAGE_DEFAULT_SECRET_KEY, password);
