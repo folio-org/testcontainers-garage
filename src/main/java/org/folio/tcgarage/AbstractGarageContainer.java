@@ -126,7 +126,7 @@ public abstract class AbstractGarageContainer<T extends AbstractGarageContainer<
    * @param userName S3 API user name
    * @return this
    */
-  public AbstractGarageContainer<T> withUserName(String userName) {
+  public T withUserName(String userName) {
     return withEnv(GARAGE_DEFAULT_ACCESS_KEY, userName);
   }
 
