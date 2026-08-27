@@ -117,7 +117,7 @@ public abstract class AbstractGarageContainer<T extends AbstractGarageContainer<
         throw new UnsupportedOperationException("Expected s3 but got " + service);
       }
     }
-    return this;
+    return self();
   }
 
   /**
