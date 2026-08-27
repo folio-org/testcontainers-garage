@@ -111,7 +111,7 @@ public abstract class AbstractGarageContainer<T extends AbstractGarageContainer<
    * @param services must be "s3"
    * @return this
    */
-  public AbstractGarageContainer<T> withServices(String... services) {
+  public T withServices(String... services) {
     for (var service : services) {
       if (! "s3".equals(service)) {
         throw new UnsupportedOperationException("Expected s3 but got " + service);
