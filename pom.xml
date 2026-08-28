@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.folio</groupId>
   <artifactId>testcontainers-garage</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0-SNAPSHOT</version>
   <name>testcontainers-garage</name>
   <description>Testcontainers :: Garage - S3-compatible distributed object storage service</description>
   <url>https://github.com/folio-org/testcontainers-garage</url>
@@ -201,7 +201,7 @@
     <url>https://github.com/folio-org/testcontainers-garage</url>
     <connection>scm:git:git@github.com:folio-org/testcontainers-garage.git</connection>
     <developerConnection>scm:git:git@github.com:folio-org/testcontainers-garage.git</developerConnection>
-    <tag>v1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <repositories>
